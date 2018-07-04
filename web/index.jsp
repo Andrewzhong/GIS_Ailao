@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8">
     <style>
-        html, body, #viewDiv {
+        html, body, #mapDiv {
             padding: 0;
             margin: 0;
             height: 100%;
@@ -22,34 +22,16 @@
     <link rel="stylesheet" href="https://js.arcgis.com/4.7/esri/css/main.css">
     <script src="https://js.arcgis.com/4.7/"></script>
     <script>
-        require([
-            "esri/Map",
-            "esri/views/MapView",
-            "dojo/domReady!"
-        ], function(Map, MapView){
-            var map = new Map({
-                basemap: "oceans"
-            });
-            var view = new MapView({
-                container: "viewDiv",  // Reference to the scene div created in step 5
-                map: map,  // Reference to the map object created before the scene
-                zoom: 4,  // Sets zoom level based on level of detail (LOD)
-                center: [15, 65]  // Sets center point of view using longitude,latitude
-            });
-        });
-    </script>
-    <!--<script>
-        require([
-            "esri/map","esri/layers/ArcGISDynamicMapServiceLayer",
-                "dojo/domReady!"], function(Map,ArcGISDynamicMapServiceLayer){
-                var map = new Map("viewDiv");
+        require(["esri/map","esri/layers/ArcGISDynamicMapServiceLayer",
+                "dojo/domReady!"],
+            function(Map,ArcGISDynamicMapServiceLayer){
+                var map = new Map("mapDiv");
                 //利用url创建一个动态地图服务对象
-                var layer=new ArcGISDynamicMapServiceLayer(
-                    "http://202.203.134.147:6080/arcgis/rest/services/Servertest/MapServer?f=jsapi");
+                var layer=new ArcGISDynamicMapServiceLayer("http://202.203.134.147:6080/arcgis/rest/services/Servertest/MapServer");
                 //将地图服务对象添加到地图容器中
                 map.addLayer(layer);
             })
-    </script>-->
+    </script>
     <title>GIS JavaScript</title>
 </head>
 <body>
@@ -72,7 +54,7 @@
 </nav>
 
 <!--地图显示控件-->
-<div id="viewDiv"></div>
+<div id="mapDiv"></div>
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
